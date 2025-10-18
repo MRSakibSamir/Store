@@ -17,11 +17,13 @@ public class ProductsController {
         this.productsService = productsService;
     }
 
+    // ✅ Get all products
     @GetMapping
     public List<Products> getAllProducts() {
         return productsService.getAllProducts();
     }
 
+    // ✅ Get a single product by ID
     @GetMapping("/{id}")
     public ResponseEntity<Products> getProductById(@PathVariable Long id) {
         return productsService.getProductById(id)
@@ -29,11 +31,13 @@ public class ProductsController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // ✅ Create a new product
     @PostMapping
     public Products createProduct(@RequestBody Products product) {
         return productsService.createProduct(product);
     }
 
+    // ✅ Update an existing product
     @PutMapping("/{id}")
     public ResponseEntity<Products> updateProduct(@PathVariable Long id, @RequestBody Products product) {
         try {
@@ -44,6 +48,7 @@ public class ProductsController {
         }
     }
 
+    // ✅ Delete a product by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productsService.deleteProduct(id);
